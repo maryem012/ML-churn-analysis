@@ -1,0 +1,17 @@
+<div>
+    <input type="file" (change)="onFileSelected($event)">
+    <button (click)="uploadAndPredict()">Upload and Predict</button>
+    <div *ngIf="predictions">
+      <h2>Prediction Results</h2>
+      <table>
+        <tr>
+          <th>CustomerID</th>
+          <th>Prediction</th>
+        </tr>
+        <tr *ngFor="let prediction of predictions">
+          <td>{{ prediction.customerID }}</td>
+          <td>{{ prediction.Predictions }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>

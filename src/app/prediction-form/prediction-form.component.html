@@ -1,0 +1,136 @@
+<button type="submit" class="btn btn-primary col-sm-12 col-form-label" style="padding: 14px; border: 25px;" routerLink="/prediction">Predict more</button>
+
+<div class="container-fluid bg-primary text-white d-flex justify-content-center align-items-center" style="height: 60px;">
+ <b><h2 class="display-6 mb-0 ">CHURN PREDICTION FOR TELECOMINICATION CUSTOMERS</h2></b> 
+</div>
+
+<form (ngSubmit)="onSubmit()" class="container" style="padding-top: 30px;"> 
+   <div class="form-group row">
+      <label for="tenure" class="col-sm-2 col-form-label">Tenure (Months):</label>
+  <div>
+    <input type="number" class="form-control " id="tenure" name="tenure" [(ngModel)]="userInput.tenure" required>
+  </div>
+</div>
+
+  <!-- Monthly Charges Input -->
+  <div class="form-group">
+    <label for="monthlyCharges" class="col-sm-2 col-form-label">Monthly Charges ($):</label>
+    <input type="number" class="form-control" id="monthlyCharges" name="monthlyCharges" [(ngModel)]="userInput.monthlyCharges" required>
+  </div>
+
+  <!-- Number of Tech Tickets Input -->
+  <div class="form-group">
+    <label for="numTechTickets" class="col-sm-2 col-form-label">Number of Tech Tickets:</label>
+    <input type="number" class="form-control" id="numTechTickets" name="numTechTickets" [(ngModel)]="userInput.numTechTickets" required>
+  </div>
+
+  <!-- Internet Service Selection -->
+  <div class="form-group">
+    <label for="internetService" class="col-sm-2 col-form-label">Internet Service:</label>
+    <select class="form-control" id="internetService" name="internetService" [(ngModel)]="userInput.internetService" required>
+      <option value="" disabled selected>Select Internet Service</option>
+      <option value="Fiber optic">Fiber Optic</option>
+      <option value="None">None</option>
+    </select>
+  </div>
+
+  <!-- Online Security Radio Buttons -->
+  <div class="form-group">
+    <label class="col-sm-2 col-form-label">Online Security:</label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" id="onlineSecurityYes" value="Yes" name="onlineSecurity" [(ngModel)]="userInput.onlineSecurity" required>
+      <label class="col-sm-2 col-form-label" for="onlineSecurityYes">Yes</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" id="onlineSecurityNo" value="No" name="onlineSecurity" [(ngModel)]="userInput.onlineSecurity" required>
+      <label class="col-sm-2 col-form-label" for="onlineSecurityNo">No</label>
+    </div>
+  </div>
+
+  <!-- Online Backup Radio Buttons -->
+  <div class="form-group">
+    <label>Online Backup:</label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" id="onlineBackupYes" value="Yes" name="onlineBackup" [(ngModel)]="userInput.onlineBackup" required>
+      <label class="col-sm-2 col-form-label" for="onlineBackupYes">Yes</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" id="onlineBackupNo" value="No" name="onlineBackup" [(ngModel)]="userInput.onlineBackup" required>
+      <label class="col-sm-2 col-form-label" for="onlineBackupNo">No</label>
+    </div>
+  </div>
+
+  <!-- Paperless Billing Radio Buttons -->
+  <div class="form-group">
+    <label>Paperless Billing:</label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" id="paperlessBillingYes" value="Yes" name="paperlessBilling" [(ngModel)]="userInput.paperlessBilling" required>
+      <label class="col-sm-2 col-form-label" for="paperlessBillingYes">Yes</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" id="paperlessBillingNo" value="No" name="paperlessBilling" [(ngModel)]="userInput.paperlessBilling" required>
+      <label class="col-sm-2 col-form-label" for="paperlessBillingNo">No</label>
+    </div>
+  </div>
+
+  <!-- Device Protection Radio Buttons -->
+  <div class="form-group">
+    <label>Device Protection:</label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" id="deviceProtectionYes" value="Yes" name="deviceProtection" [(ngModel)]="userInput.deviceProtection" required>
+      <label class="col-sm-2 col-form-label" for="deviceProtectionYes">Yes</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" id="deviceProtectionNo" value="No" name="deviceProtection" [(ngModel)]="userInput.deviceProtection" required>
+      <label class="col-sm-2 col-form-label" for="deviceProtectionNo">No</label>
+    </div>
+  </div>
+
+  <!-- Tech Support Radio Buttons -->
+  <div class="form-group">
+    <label>Tech Support:</label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" id="techSupportYes" value="Yes" name="techSupport" [(ngModel)]="userInput.techSupport" required>
+      <label class="col-sm-2 col-form-label" for="techSupportYes">Yes</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" id="techSupportNo" value="No" name="techSupport" [(ngModel)]="userInput.techSupport" required>
+      <label class="col-sm-2 col-form-label" for="techSupportNo">No</label>
+    </div>
+  </div>
+
+  <!-- Contract Selection -->
+  <div class="form-group">
+    <label>Contract:</label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" id="contractMonthToMonth" value="Month-to-month" name="contract" [(ngModel)]="userInput.contract" required>
+      <label class="col-sm-2 col-form-label" for="contract_Month_To_Month">Month-to-month</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" id="contractOneYear" value="One year" name="contract" [(ngModel)]="userInput.contract" required>
+      <label class="col-sm-2 col-form-label" for="contract_One_Year">One year</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" id="contractTwoYear" value="Two year" name="contract" [(ngModel)]="userInput.contract" required>
+      <label class="col-sm-2 col-form-label" for="contract_Two_Year">Two year</label>
+    </div>
+  </div>
+  <!-- Payment Method Selection -->
+  <div class="form-group" style="padding-bottom: 20px;">
+    <label class="col-sm-2 col-form-label" for="PaymentMethod">Payment Method:</label>
+    <select class="form-control" id="PaymentMethod" name="PaymentMethod" [(ngModel)]="userInput.paymentMethod" required>
+      <option value="" disabled selected>Select Payment Method</option>
+      <option value="Electronic check">Electronic check</option>
+      <option value="Mailed check">Mailed check</option>
+      <option value="Credit card (automatic)">Credit card (automatic)</option>
+      <option value="Bank transfer (automatic)">Bank transfer (automatic)</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary col-sm-12 col-form-label" style="padding: 14px; border: 25px;" >Predict</button>
+
+  <p-dialog header="Churn result" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+    <p class="m-0">
+{{this.prediction}}    </p>
+</p-dialog>
+</form>
