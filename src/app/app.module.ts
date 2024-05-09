@@ -12,12 +12,26 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { ChartModule } from 'primeng/chart';
+import { FileUploadModule } from 'primeng/fileupload';
+import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
+import { HeaderComponent } from './shared/header/header.component';
+import { MenuItem } from 'primeng/api';
+import { InputTextModule } from 'primeng/inputtext';
+import { SidebarModule } from 'primeng/sidebar';
+import { BadgeModule } from 'primeng/badge';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { RippleModule } from 'primeng/ripple';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
     AppComponent,
     PredictionFormComponent,
-    DashboardComponent
+    DashboardComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -27,8 +41,18 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     CommonModule,
     HttpClientModule,
-    RouterModule
-
+    RouterModule,
+    ChartModule,
+    FileUploadModule,
+    ButtonModule,
+    ToastModule,
+    InputTextModule,
+    SidebarModule,
+    BadgeModule,
+    RadioButtonModule,
+    InputSwitchModule,
+    RippleModule,
+    DropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]

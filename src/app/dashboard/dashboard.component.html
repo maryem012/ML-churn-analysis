@@ -1,17 +1,30 @@
-<div>
-    <input type="file" (change)="onFileSelected($event)">
-    <button (click)="uploadAndPredict()">Upload and Predict</button>
-    <div *ngIf="predictions">
-      <h2>Prediction Results</h2>
-      <table>
-        <tr>
-          <th>CustomerID</th>
-          <th>Prediction</th>
-        </tr>
-        <tr *ngFor="let prediction of predictions">
-          <td>{{ prediction.customerID }}</td>
-          <td>{{ prediction.Predictions }}</td>
-        </tr>
-      </table>
+<div class="layout-wrapper">
+    <app-header></app-header>
+    <div class="layout-main-container">
+        <div class="layout-main">
+            <div class="card grid">
+                <input type="file" (change)="onFileSelected($event)" class="p-inputtext p-component">
+                <p-button (click)="uploadAndPredict()" label="Upload and Predict" icon="pi pi-upload"></p-button>
+
+            </div>
+            <div class="card ">
+                <div class="p-grid">
+                    <div class="p-md-5">
+                        <p-chart type="pie" [data]="churnData" [options]="churnOptions"></p-chart>
+                    </div>
+                    <div class="p-md-6 ">
+                        <p-chart type="bar" [data]="clvData" [options]="clvOptions"></p-chart>
+                    </div>
+                </div>
+            </div>
+            
+        <div class="card">
+            <p-dropdown [options]="featureOptions" [(ngModel)]="selectedFeature" placeholder="Select a feature"
+                (onChange)="loadPartialDependence(selectedFeature)"></p-dropdown>
+
+            <p-chart type="line" [data]="partialDependenceData"></p-chart>
+        </div>
+        <div class="layout-mask"></div>
     </div>
-  </div>
+
+    </div>
