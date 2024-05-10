@@ -1,30 +1,42 @@
 <div class="layout-wrapper">
     <app-header></app-header>
-    <div class="layout-main-container">
-        <div class="layout-main">
-            <div class="card grid">
-                <input type="file" (change)="onFileSelected($event)" class="p-inputtext p-component">
-                <p-button (click)="uploadAndPredict()" label="Upload and Predict" icon="pi pi-upload"></p-button>
+    <div class="layout-main-container " style="margin: 20px;">
+      <div class="layout-main">
+        <div style="padding-bottom: 10px;">
+        <p-card class="grid">
+            <div style="padding-bottom: 10px;">
 
-            </div>
-            <div class="card ">
-                <div class="p-grid">
-                    <div class="p-md-5">
-                        <p-chart type="pie" [data]="churnData" [options]="churnOptions"></p-chart>
-                    </div>
-                    <div class="p-md-6 ">
-                        <p-chart type="bar" [data]="clvData" [options]="clvOptions"></p-chart>
-                    </div>
-                </div>
-            </div>
-            
-        <div class="card">
+            <input class="bg-primary" type="file"  (change)="onFileSelected($event)" class="p-inputtext p-component p-button"></div>
+          <p-button  (click)="uploadAndPredict()" label="Upload and Predict" icon="pi pi-upload"></p-button>
+        </p-card>
+    </div>
+        <div class="card p-row charts-container">
+          <p-card >
+            <p-chart type="pie" [data]="churnData" [options]="churnOptions"  ></p-chart>
+        </p-card>
+    <p-card>           
+         <p-chart type="bar" [data]="clvData" [options]="clvOptions"></p-chart>
+        </p-card>
+        <p-card>
             <p-dropdown [options]="featureOptions" [(ngModel)]="selectedFeature" placeholder="Select a feature"
-                (onChange)="loadPartialDependence(selectedFeature)"></p-dropdown>
+        (onChange)="loadPartialDependence(selectedFeature)"></p-dropdown>
+      <p-chart type="line" [data]="partialDependenceData"></p-chart>
+    </p-card>
+            </div>
+  
+            
 
-            <p-chart type="line" [data]="partialDependenceData"></p-chart>
-        </div>
-        <div class="layout-mask"></div>
+      </div>
     </div>
+  </div>
+  
+  <style>
+    .charts-container {
+      display: grid;
+      grid-template-columns: repeat(2, 2fr);
+      gap: 2rem;  /* Adjust gap between charts */
+      padding: 20px;
 
-    </div>
+    }
+  </style>
+  

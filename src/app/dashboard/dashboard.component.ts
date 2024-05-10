@@ -20,7 +20,6 @@ export class DashboardComponent implements OnInit {
   featureOptions = [
     { label: 'Tenure', value: 'tenure' },
     { label: 'Monthly Charges', value: 'MonthlyCharges' },
-    { label: 'totalCharges', value: 'totalCharges' },
     
 
 
@@ -41,7 +40,8 @@ export class DashboardComponent implements OnInit {
             usePointStyle: true,
             color: '#333'
           }
-        }
+        },
+        
       }
     };
 
@@ -57,6 +57,7 @@ export class DashboardComponent implements OnInit {
     };
 
     this.clvOptions = {
+      
       responsive: true,
       scales: {
         x: {
@@ -95,10 +96,11 @@ export class DashboardComponent implements OnInit {
           data: [],
           borderColor: '#42A5F5',
           backgroundColor: 'rgba(66, 165, 245, 0.5)',
-          fill: false,
+          fill: true,
           tension: 0.1
         }
-      ]
+      ],
+      
     };
   }
 

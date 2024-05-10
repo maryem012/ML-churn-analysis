@@ -25,6 +25,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { RippleModule } from 'primeng/ripple';
 import { DropdownModule } from 'primeng/dropdown';
+import { CardModule } from 'primeng/card';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { DropdownModule } from 'primeng/dropdown';
     RadioButtonModule,
     InputSwitchModule,
     RippleModule,
-    DropdownModule
+    DropdownModule,
+    CardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
