@@ -17,11 +17,15 @@
     <p-card>           
          <p-chart type="bar" [data]="clvData" [options]="clvOptions"></p-chart>
         </p-card>
-        <p-card>
+        <p-card header="partial Dependence " class="justify-content-center">
+          
             <p-dropdown [options]="featureOptions" [(ngModel)]="selectedFeature" placeholder="Select a feature"
         (onChange)="loadPartialDependence(selectedFeature)"></p-dropdown>
       <p-chart type="line" [data]="partialDependenceData"></p-chart>
     </p-card>
+    <div class="card">
+      <p-chart type="line" [data]="data" [options]="options" />
+  </div>
             </div>
   
             

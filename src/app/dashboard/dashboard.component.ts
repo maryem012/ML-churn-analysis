@@ -20,10 +20,11 @@ export class DashboardComponent implements OnInit {
   featureOptions = [
     { label: 'Tenure', value: 'tenure' },
     { label: 'Monthly Charges', value: 'MonthlyCharges' },
-    
-
 
   ];
+  data: any;
+
+  options: any;
 
   constructor(private http: HttpClient, private predictionService: PredictionService) {}
 
@@ -36,12 +37,34 @@ export class DashboardComponent implements OnInit {
       responsive: true,
       plugins: {
         legend: {
+          position: 'top',
           labels: {
             usePointStyle: true,
             color: '#333'
           }
         },
-        
+        tooltip: {
+          enabled: true,
+          mode: 'index',
+          intersect: false,
+          callbacks: {
+            label: function(tooltipItem: { datasetIndex: string | number; raw: number; }, data: { datasets: { [x: string]: { label: string; }; }; }) {
+              let label = data.datasets[tooltipItem.datasetIndex].label || '';
+              if (label) {
+                label += ': ';
+              }
+              label += Math.round(tooltipItem.raw * 100) / 100;
+              return label;
+            }
+          }
+        },
+        title: {
+          display: true,
+          text: 'Churn Rate Distribution',
+          font: {
+            size: 20
+          }
+        }
       }
     };
 
@@ -49,7 +72,7 @@ export class DashboardComponent implements OnInit {
       labels: ['No CHURN', 'CHURN'],
       datasets: [
         {
-          data: [1, 1], // Placeholder data
+          data: [1, 1],  // Example data
           backgroundColor: ['rgba(76, 175, 80, 0.2)', 'rgba(255, 193, 7, 0.2)'],
           hoverBackgroundColor: ['#4CAF50', '#FFC107']
         }
@@ -57,8 +80,19 @@ export class DashboardComponent implements OnInit {
     };
 
     this.clvOptions = {
-      
       responsive: true,
+      plugins: {
+        tooltip: {
+          enabled: true
+        },
+        title: {
+          display: true,
+          text: 'Customer Lifetime Value Distribution',
+          font: {
+            size: 20
+          }
+        }
+      },
       scales: {
         x: {
           title: {
@@ -76,10 +110,10 @@ export class DashboardComponent implements OnInit {
     };
 
     this.clvData = {
-      labels: [],
+      labels: ['Low', 'Medium', 'High', 'Very High'],  // Example labels
       datasets: [
         {
-          label: 'Customer Number',
+          label: 'Number of Customers',
           data: [100, 1000, 1400, 1900],
           backgroundColor: 'rgba(255, 99, 132, 0.2)',
           borderColor: 'rgba(255, 99, 132, 1)',
@@ -102,7 +136,72 @@ export class DashboardComponent implements OnInit {
       ],
       
     };
-  }
+
+    const documentStyle = getComputedStyle(document.documentElement);
+    const textColor = documentStyle.getPropertyValue('--text-color');
+    const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
+    const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
+    
+    this.data = {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [
+            {
+                label: 'First Dataset',
+                data: [65, 59, 80, 81, 56, 55, 40],
+                fill: false,
+                tension: 0.4,
+                borderColor: documentStyle.getPropertyValue('--blue-500')
+            },
+            {
+                label: 'Second Dataset',
+                data: [28, 48, 40, 19, 86, 27, 90],
+                fill: false,
+                borderDash: [5, 5],
+                tension: 0.4,
+                borderColor: documentStyle.getPropertyValue('--teal-500')
+            },
+            {
+                label: 'Third Dataset',
+                data: [12, 51, 62, 33, 21, 62, 45],
+                fill: true,
+                borderColor: documentStyle.getPropertyValue('--orange-500'),
+                tension: 0.4,
+                backgroundColor: 'rgba(255,167,38,0.2)'
+            }
+        ]
+    };
+    
+    this.options = {
+        maintainAspectRatio: false,
+        aspectRatio: 0.6,
+        plugins: {
+            legend: {
+                labels: {
+                    color: textColor
+                }
+            }
+        },
+        scales: {
+            x: {
+                ticks: {
+                    color: textColorSecondary
+                },
+                grid: {
+                    color: surfaceBorder
+                }
+            },
+            y: {
+                ticks: {
+                    color: textColorSecondary
+                },
+                grid: {
+                    color: surfaceBorder
+                }
+            }
+        }
+    };
+}
+  
 
   onFileSelected(event: any): void {
     this.file = event.target.files[0] || null;
